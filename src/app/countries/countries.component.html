@@ -1,0 +1,15 @@
+<form [formGroup]="formCount" class="container mt-5">
+    <select formControlName="country">
+        <option [value]="country" *ngFor="let country of countries"> {{country}} </option>
+    </select>
+    <select formControlName="city">
+        <option [value]="city" *ngFor="let city of cities"> {{city}} </option>
+    </select>
+    <button class="btn btn-success ms-4" (click)="logForm()">Log</button>
+</form>
+
+<form [formGroup]="form" action="">
+    <input type="number" formControlName="age">
+    <input type="number" formControlName="pin"
+    [ngClass]="{'border-danger': pin.invalid && pin.touched}">
+</form>
