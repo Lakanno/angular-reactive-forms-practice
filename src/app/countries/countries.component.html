@@ -8,8 +8,8 @@
     <button class="btn btn-success ms-4" (click)="logForm()">Log</button>
 </form>
 
-<form [formGroup]="form" action="">
-    <input type="number" formControlName="age">
-    <input type="number" formControlName="pin"
+<form [formGroup]="form" action="" class="container mt-5">
+    <input type="number" formControlName="age" class="form-control">
+    <input type="number" formControlName="pin" class="form-control"
     [ngClass]="{'border-danger': pin.invalid && pin.touched}">
 </form>

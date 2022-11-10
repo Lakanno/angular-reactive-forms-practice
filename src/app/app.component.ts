@@ -43,7 +43,6 @@ export class AppComponent implements OnInit{
 
   // as დაბრუნდება FormGroup
 
-
   ngOnInit(){
     this.name.valueChanges.pipe(tap((data) =>console.log(data))).subscribe()
   }
