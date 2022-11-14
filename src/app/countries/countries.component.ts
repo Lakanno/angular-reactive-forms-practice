@@ -10,7 +10,6 @@ import { debounceTime, distinctUntilChanged, tap } from 'rxjs';
 export class CountriesComponent implements OnInit {
   countries = ['usa', 'georgia', 'ukraine']
   cities: String[] = [];
-
   //@ts-ignore
   countryToCities = new Map([
     ['georgia', ['tbilisi', 'rustavi']],
@@ -30,6 +29,8 @@ export class CountriesComponent implements OnInit {
 
   constructor() { }
 
+
+  // თუ ადამიანი სრულწლოვანია პირადი ნომერი რომ იყოს სავალდებულო
   ngOnInit(): void {
     this.valueChanges();
     this.ageValueChanges();
@@ -50,26 +51,24 @@ export class CountriesComponent implements OnInit {
   // ageValueChanges(){
   //   this.age.valueChanges.pipe(
   //     tap((age) =>{
-  //       if (Number(age) >= 18) {
+  //       if ( age >= 18) {
   //         this.pin.setValidators([Validators.required]);
   //       }else{
   //         this.pin.clearValidators();
   //       }
   //       this.pin.updateValueAndValidity();
-  //   })).subscribe()
+  //   })).subscribe();
   // }
 
   ageValueChanges(){
     this.age.valueChanges.pipe(
-      debounceTime(500),
-      distinctUntilChanged(), //ადარებს ერტმაეთს
+      debounceTime(500), 
+      distinctUntilChanged(), //ადარებს ერთმანეთს
       tap((age) =>{
-        console.log(age);
-        
+        console.log(age)  
     })).subscribe()
   }
   // debounceTime ლოგები რომ თავიდან ავიცილოთ, ამიტომ დაელოდება ტითოეული 
-
 
   get country(){
     return this.formCount.get('country') as FormControl
@@ -82,6 +81,4 @@ export class CountriesComponent implements OnInit {
   get pin(){
     return this.form.get('pin') as FormControl
   }
-
-
 }

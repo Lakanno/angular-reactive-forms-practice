@@ -15,17 +15,51 @@
     class="text-danger mb-2">
     Minimum Character is 5</span>
 
-    <input  class="form-control mb-2" formControlName="lastName" type="text"  placeholder="lastName">
-    
-  
+    <input 
+    [ngClass]="{'border-danger': lastname.invalid && lastname.touched}"
+    class="form-control mb-2" formControlName="lastName" type="text"  placeholder="lastName">
+
+    <span  
+    *ngIf="lastname.errors && lastname.errors['required'] && lastname.touched" 
+    class="text-danger mb-2">
+      lastName can not be empty
+    </span>
+    <span
+    *ngIf="lastname.errors && lastname.errors['maxlength'] && lastname.touched" 
+    class="form-control mb-2">
+      maximum Character is 15</span>
+
+    <input formControlName="age" class="form-control mb-2" type="number">
+    <span
+    *ngIf="age.errors && age.errors['required'] && age.touched"
+    ></span>
+
     <form [formGroup]="addressGroup" >
       <label class="form-label" for="">Address</label>
-      <input class="form-control mb-2" formControlName="house1" type="text" placeholder="house 1">
-      <input class="form-control mb-2" formControlName="house2" type="text" placeholder="house 2">
+      <input 
+      [ngClass]="{'border-danger': house1.invalid && house1.touched}"
+      class="form-control mb-2" formControlName="house1" type="text" placeholder="house 1">
+      <span  
+      *ngIf="house1.errors && house1.errors['required'] && house1.touched" 
+      class="text-danger mb-2">
+        House 1 can not be empty
+      </span>
+
+      <input 
+      [ngClass]="{'border-danger': house2.invalid && house2.touched}"
+      class="form-control mb-2" formControlName="house2" type="text" placeholder="house 2">
+
+      <span  
+      *ngIf="house2.errors && house2.errors['required'] && house2.touched" 
+      class="text-danger mb-2">
+        House 2 can not be empty
+      </span>
     </form>
     <button class="btn btn-primary mt-3" (click)="logForm()">Log Form</button>
 
   </form>
 </div>
+
+<div *ngFor="let item of posts"> {{item.name}} </div>
 
 <app-countries></app-countries>
